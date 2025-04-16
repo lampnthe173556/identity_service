@@ -2,6 +2,7 @@ package com.devteria.identityService.controllers;
 
 import com.devteria.identityService.dto.request.IntrospectRequest;
 import com.devteria.identityService.dto.request.LogoutRequest;
+import com.devteria.identityService.dto.request.RefreshRequest;
 import com.devteria.identityService.dto.response.ApiResponse;
 import com.devteria.identityService.dto.request.AuthenticationRequest;
 import com.devteria.identityService.dto.response.AuthenticationResponse;
@@ -38,6 +39,14 @@ public class AuthenticationController {
             throws ParseException, JOSEException {
         var result = authenticationService.introspect(request);
         return ApiResponse.<IntrospectResponse>builder().
+                result(result).
+                build();
+    }
+
+    @PostMapping(value = "/refresh")
+    public ApiResponse<AuthenticationResponse> authenticate(@RequestBody RefreshRequest request) throws ParseException, JOSEException {
+        var result = authenticationService.refreshToken(request);
+        return ApiResponse.<AuthenticationResponse>builder().
                 result(result).
                 build();
     }
