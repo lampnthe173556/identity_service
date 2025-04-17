@@ -12,12 +12,15 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @SpringBootTest
 @TestPropertySource(value = "/test.properties")
@@ -84,5 +87,25 @@ class UserServiceTest {
         var exception = assertThrows(AppException.class, () -> userService.createUser(request));
         //THEN
         Assertions.assertThat(exception.getErrorCode().getCode()).isEqualTo(1001);
+    }
+
+    @Test
+    @WithMockUser(username = "join")
+    void getMyInfo_valid_success() {
+        when(userRepository.findUserByUsername(anyString())).thenReturn(Optional.of(user));
+
+        var response = userService.getUserByToken();
+        Assertions.assertThat(response.getUsername()).isEqualTo("Join");
+        Assertions.assertThat(response.getId()).isEqualTo("8e872d231a1f");
+    }
+
+    @Test
+    @WithMockUser(username = "join")
+    void getMyInfo_notExisted() {
+        when(userRepository.findUserByUsername(anyString())).thenReturn(Optional.ofNullable(null));
+
+        var exception = assertThrows(AppException.class, () -> userService.getUserByToken());
+        Assertions.assertThat(exception.getErrorCode().getCode()).isEqualTo(1005);
+
     }
 }

@@ -91,6 +91,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -163,10 +168,14 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>com/devteria/identityservice/dto/**</exclude>
-                        <exclude>com/devteria/identityservice/entities/**</exclude>
-                        <exclude>com/devteria/identityservice/mapper/**</exclude>
-                        <exclude>com/devteria/identityservice/configuration/**</exclude>
+                        <exclude>com/devteria/identityService/dto/**</exclude>
+                        <exclude>com/devteria/identityService/entities/**</exclude>
+                        <exclude>com/devteria/identityService/mapper/**</exclude>
+                        <exclude>com/devteria/identityService/configuration/**</exclude>
+                        <exclude>com/devteria/identityService/exception/**</exclude>
+                        <exclude>com/devteria/identityService/enums/**</exclude>
+                        <exclude>com/devteria/identityService/validator/**</exclude>
+                        <exclude>com/devteria/identityService/repositories/**</exclude>
                     </excludes>
                 </configuration>
             </plugin>
