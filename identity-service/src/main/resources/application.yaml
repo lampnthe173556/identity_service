@@ -13,5 +13,8 @@ spring:
       ddl-auto: update
     show-sql: true
 
-jwt:
-  signerKey: "tvldt/yAkVypVVaOP8P6EhtCsrbIqavnBd5Xox+yvuVBVT1OX4O33SKFVHbanHbL"
+jwt: {
+  signerKey: "tvldt/yAkVypVVaOP8P6EhtCsrbIqavnBd5Xox+yvuVBVT1OX4O33SKFVHbanHbL",
+  valid-duration: 3600, #In second
+  refreshable-duration: 36000 #In second
+}
