@@ -36,7 +36,7 @@ public class UserService {
     RoleRepository roleRepository;
 
     public UserResponse createUser(UserCreationRequest request) {
-
+        log.info("Create user service");
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
@@ -45,8 +45,6 @@ public class UserService {
         HashSet<String> roles = new HashSet<>();
         roles.add(Roles.USER.name());
         //user.setRoles(roles);
-
-
         return userMapper.toUserResponse(userRepository.save(user));
     }
 

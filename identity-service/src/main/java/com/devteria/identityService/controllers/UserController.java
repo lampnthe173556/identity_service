@@ -27,10 +27,9 @@ public class UserController {
     //@Valid thi se giup validation nhung cai role define trong object
     public ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request) {
         //requestBody : map data tu body vao object duoi code
-
+        log.info("Controller : create user");
         ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
         apiResponse.setResult(userService.createUser(request));
-
         return apiResponse;
     }
 
