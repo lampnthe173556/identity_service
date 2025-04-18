@@ -1,20 +1,21 @@
 package com.devteria.identityService.mapper;
 
-import com.devteria.identityService.dto.request.UserCreationRequest;
-import com.devteria.identityService.dto.request.UserUpdateRequest;
-import com.devteria.identityService.dto.response.UserResponse;
-import com.devteria.identityService.entities.User;
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-import java.util.List;
+import com.devteria.identityService.dto.request.UserCreationRequest;
+import com.devteria.identityService.dto.request.UserUpdateRequest;
+import com.devteria.identityService.dto.response.UserResponse;
+import com.devteria.identityService.entities.User;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     User toUser(UserCreationRequest request);
 
-    //@MappingTarget giup mapping data tu request vao user
+    // @MappingTarget giup mapping data tu request vao user
     @Mapping(target = "roles", ignore = true)
     void updateUser(@MappingTarget User user, UserUpdateRequest request);
 

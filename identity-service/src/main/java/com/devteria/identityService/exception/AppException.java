@@ -1,6 +1,7 @@
 package com.devteria.identityService.exception;
 
 import com.devteria.identityService.enums.ErrorCode;
+
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,16 +1,18 @@
 package com.devteria.identityService.controllers;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.*;
+
 import com.devteria.identityService.dto.request.PermissionRequest;
 import com.devteria.identityService.dto.response.ApiResponse;
 import com.devteria.identityService.dto.response.PermissionResponse;
 import com.devteria.identityService.service.PermissionService;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/permissions")

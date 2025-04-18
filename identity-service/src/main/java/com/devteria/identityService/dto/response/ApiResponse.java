@@ -1,6 +1,7 @@
 package com.devteria.identityService.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -10,10 +11,11 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-//contain all field normalize code
+// contain all field normalize code
 public class ApiResponse<T> {
     @Builder.Default
     int code = 200;
+
     String message;
     T result;
 }

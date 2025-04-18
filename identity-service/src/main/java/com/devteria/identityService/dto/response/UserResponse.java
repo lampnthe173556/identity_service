@@ -1,12 +1,12 @@
 package com.devteria.identityService.dto.response;
 
-
-import com.devteria.identityService.entities.Roles;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
-
 import java.time.LocalDate;
 import java.util.Set;
+
+import com.devteria.identityService.entities.Roles;
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter

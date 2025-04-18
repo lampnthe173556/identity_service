@@ -1,19 +1,22 @@
 package com.devteria.identityService.controllers;
 
-import com.devteria.identityService.dto.response.ApiResponse;
+import java.util.List;
+
+import jakarta.validation.Valid;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
 import com.devteria.identityService.dto.request.UserCreationRequest;
 import com.devteria.identityService.dto.request.UserUpdateRequest;
+import com.devteria.identityService.dto.response.ApiResponse;
 import com.devteria.identityService.dto.response.UserResponse;
 import com.devteria.identityService.service.UserService;
-import jakarta.validation.Valid;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -24,9 +27,9 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-    //@Valid thi se giup validation nhung cai role define trong object
+    // @Valid thi se giup validation nhung cai role define trong object
     public ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request) {
-        //requestBody : map data tu body vao object duoi code
+        // requestBody : map data tu body vao object duoi code
         log.info("Controller : create user");
         ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
         apiResponse.setResult(userService.createUser(request));
@@ -35,11 +38,11 @@ public class UserController {
 
     @GetMapping
     public ApiResponse<List<UserResponse>> getUsers() {
-        //get thong tin dang duoc dang nhap trong request cua spring security
+        // get thong tin dang duoc dang nhap trong request cua spring security
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         log.info("Username: {}", authentication.getName());
-        //mac dinh jwt authentication manager se tu dong map scope vao scope cua minh nen no se no scope vao duoi
-//        log.info("Roles: {}", authentication.getAuthorities().stream().toList());
+        // mac dinh jwt authentication manager se tu dong map scope vao scope cua minh nen no se no scope vao duoi
+        //        log.info("Roles: {}", authentication.getAuthorities().stream().toList());
         authentication.getAuthorities().forEach(grantedAuthority -> {
             log.info(grantedAuthority.getAuthority());
         });

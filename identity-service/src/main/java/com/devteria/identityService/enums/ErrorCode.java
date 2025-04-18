@@ -1,16 +1,16 @@
 package com.devteria.identityService.enums;
 
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
-@Getter
+import lombok.Getter;
 
+@Getter
 public enum ErrorCode {
-    //401 xay ra o tang filter nen globalException khong cham duoc vao
-    //nhung cai khong ro INTERNAL_SERVER_ERROR
+    // 401 xay ra o tang filter nen globalException khong cham duoc vao
+    // nhung cai khong ro INTERNAL_SERVER_ERROR
     UNCATEGORIZED_EXCEPTION(9999, "Uncategorized exception", HttpStatus.INTERNAL_SERVER_ERROR),
-    //thong tin user  HttpStatus.BAD_REQUEST
+    // thong tin user  HttpStatus.BAD_REQUEST
     INVALID_KEY(1000, "Invalid message key", HttpStatus.BAD_REQUEST),
     USER_EXISTED(1001, "User existed", HttpStatus.BAD_REQUEST),
     USERNAME_INVALID(1003, "Username must be at least {min} characters", HttpStatus.BAD_REQUEST),
@@ -29,5 +29,4 @@ public enum ErrorCode {
     private int code;
     private String message;
     private HttpStatusCode statusCode;
-
 }
